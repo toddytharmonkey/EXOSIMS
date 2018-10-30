@@ -883,11 +883,9 @@ class SurveySimulation(object):
             #checking to see if slewTimes are allowed
             good_inds = np.where( (slewTimes.reshape([len(sInds),1]).value > minAllowedSlewTime) & \
                                   (slewTimes.reshape([len(sInds),1]).value < maxAllowedSlewTime) )[0]
-            
-            slewTimes = slewTimes[good_inds]
         
         
-        return sInds[good_inds],intTimes[good_inds].flatten(),slewTimes
+        return sInds[good_inds],intTimes[good_inds].flatten(),slewTimes[good_inds]
     
     def findAllowableOcculterSlews(self, sInds, old_sInd, sd, slewTimes, obsTimeArray, intTimeArray, mode):
         """Filters occulter slews that have already been calculated/selected.
